@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">AircraftWar</string>
+    <string name="MediumGame">普通模式</string>
+    <string name="EasyGame">简单模式</string>
+    <string name="HardGame">困难模式</string>
+    <string name="music">声音</string>
+    <string name="difficulty">难度：EASY</string>
+    <string name="ranking">排行榜</string>
+    <string name="position">名次</string>
+    <string name="username">用户名</string>
+    <string name="score">得分</string>
+    <string name="time">记录时间</string>
+    <string name="delete">删除选中记录</string>
+    <string name="password">密 码</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="start">开始游戏</string>
+    <string name="solo">单机模式>></string>
+</resources>
