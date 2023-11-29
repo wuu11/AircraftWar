@@ -1,0 +1,81 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class AbstractGame {
+    - backGroundTop:int
+    + {static} musicOn:boolean
+    - executorService:ScheduledExecutorService
+    # timeInterval:int
+    # heroAircraft:HeroAircraft
+    # enemyAircrafts:List<BaseEnemy>
+    # heroBullets:List<BaseBullet>
+    # enemyBullets:List<BaseBullet>
+    # props:List<BaseProp>
+    # bossEnemyAircrafts:List<BaseEnemy>
+    # baseEnemyFactory:BaseEnemyFactory
+    - rankingDao:RankingDao
+    - bgm:MusicThread
+    - bulletHit:MusicThread
+    - gameOver:MusicThread
+    - getSupply:MusicThread
+    # bgmBoss:MusicThread
+    # enemyMaxNumber:int
+    # score:int
+    # circleScoreCommon:int
+    # circleScoreDifficult:int
+    # time:int
+    # heroCycleDuration:int
+    # enemyCycleDuration:int
+    - heroCycleTime:int
+    - enemyCycleTime:int
+    - gameOverFlag:boolean
+    - degree:String
+    + AbstractGame(String degree)
+    + action():void
+    + {abstract} increaseDifficulty():void
+    - timeCountAndNewHeroCycleJudge():boolean
+    - timeCountAndNewEnemyCycleJudge():boolean
+    + {abstract} createEnemyAircraft():void
+    + {abstract} createBossEnemy():void
+    - heroShootAction():void
+    - enemyShootAction():void
+    - bulletsMoveAction():void
+    - aircraftsMoveAction():void
+    - propsMoveAction():void
+    - crashCheckAction():void
+    - postProcessAction():void
+    + paint(Graphics g):void
+    - paintImageWithPositionRevised(Graphics g, List<? extends AbstractFlyingObject> objects):void
+    - paintScoreAndLife(Graphics g):void
+}
+
+class EasyGame {
+    + EasyGame()
+    + increaseDifficulty():void
+    + createEnemyAircraft():void
+    + createBossEnemy():void
+}
+
+class CommonGame {
+    - limit:int
+    - increment:int
+    + CommonGame()
+    + increaseDifficulty():void
+    + createEnemyAircraft():void
+    + createBossEnemy():void
+}
+
+class DifficultGame {
+    - limit:int
+    - increment:int
+    - bossNum:int
+    + DifficultGame()
+    + increaseDifficulty():void
+    + createEnemyAircraft():void
+    + createBossEnemy():void
+}
+
+AbstractGame <|-- EasyGame
+AbstractGame <|-- CommonGame
+AbstractGame <|-- DifficultGame
+@enduml

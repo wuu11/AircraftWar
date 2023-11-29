@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class BombProp {
+    - objectList:List<AbstractFlyingObject>
+    + BombProp(int locationX, int locationY, int speedX, int speedY, int power)
+    + addObject(AbstractFlyingObject object):void
+    + removeObject(AbstractFlyingObject object):void
+    + notifyAll(boolean active):void
+    + act(AbstractAircraft aircraft, List<BaseBullet> enemyBullets, List<BaseEnemy> enemyAircrafts):void
+}
+
+abstract class AbstractFlyingObject {
+    + {abstract} update():void //其他属性、方法略
+}
+
+class EnemyBullet {
+    + EnemyBullet(int locationX, int locationY, int speedX, int speedY, int power)
+    + update():void
+}
+
+class MobEnemy {
+    + MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp)
+    + executeStrategy(AbstractAircraft aircraft):List<BaseBullet>
+    + dropProp():List<BaseProp>
+    + update():void
+}
+
+class EliteEnemy {
+    - propFactory:BasePropFactory
+    + MobEnemy(int locationX, int locationY, int speedX, int speedY, int hp, Strategy strategy)
+    + dropProp():List<BaseProp>
+    + update():void
+}
+
+class BossEnemy {
+    - propFactory:BasePropFactory
+    - propNum:int
+    + BossEnemy(int locationX, int locationY, int speedX, int speedY, int hp, Strategy strategy)
+    + forward():void
+    + dropProp():List<BaseProp>
+    + update():void
+}
+
+BombProp o--> AbstractFlyingObject
+
+AbstractFlyingObject <|-- EnemyBullet
+AbstractFlyingObject <|-- MobEnemy
+AbstractFlyingObject <|-- EliteEnemy
+AbstractFlyingObject <|-- BossEnemy
+
+@enduml

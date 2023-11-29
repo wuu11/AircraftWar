@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface RankingDao {
+    + {abstract} getAll():List<Ranking>
+    + {abstract} doAdd(Ranking ranking):void
+    + {abstract} doDelete(int position):void
+    + {abstract} doRank():void
+    + {abstract} storage():void
+}
+
+class RankingDaoImpl {
+    - rankings:List<Ranking>
+    - path:String
+    + RankingDaoImpl(String path)
+    + getAll():List<Ranking>
+    + doAdd(Ranking ranking):void
+    + doDelete(int position):void
+    + doRank():void
+    + storage():void
+}
+
+class Ranking {
+    - position:int
+    - userName:String
+    - score:int
+    - time:String
+    + Ranking(int position, String userName, int score, String time)
+    + getPosition():int
+    + setPosition(int position):void
+    + getUserName():String
+    + setUserName(String userName):void
+    + getScore():int
+    + setScore(int score):void
+    + getTime():String
+}
+
+RankingDao <|.. RankingDaoImpl
+RankingDaoImpl --> Ranking
+
+@enduml
